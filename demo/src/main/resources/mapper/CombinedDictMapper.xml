@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dite.znpt.mapper.CombinedDictMapper">
+
+    <sql id="Base_Column_List">
+        a.dict_id,         a.dict_type,         a.dict_name,         a.parent_id, 
+        a.sort_order,         a.final_state
+    </sql>
+
+    <select id="queryBySelective" resultType="com.dite.znpt.domain.vo.CombinedDictResp">
+        select
+            <include refid="Base_Column_List"/>
+        from combined_dict a
+        <where>
+            <if test="keyword != null and keyword != ''">
+#                and (a.TODO like concat('%', #{keyword,jdbcType=VARCHAR}, '%') or a.TODO like concat('%', #{keyword,jdbcType=VARCHAR}, '%'))
+            </if>
+            <if test="dictId != null and dictId != ''">
+                and a.dict_id like concat ('%', #{dictId}, '%')
+            </if>
+            <if test="dictType != null and dictType != ''">
+                and a.dict_type like concat ('%', #{dictType}, '%')
+            </if>
+            <if test="dictName != null and dictName != ''">
+                and a.dict_name like concat ('%', #{dictName}, '%')
+            </if>
+            <if test="parentId != null">
+                and a.parent_id = #{parentId}
+            </if>
+            <if test="sortOrder != null">
+                and a.sort_order = #{sortOrder}
+            </if>
+            <if test="finalState != null">
+                and a.final_state = #{finalState}
+            </if>
+        </where>
+    </select>
+</mapper>
+

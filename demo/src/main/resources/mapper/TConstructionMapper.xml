@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dite.znpt.mapper.TConstructionMapper">
+
+    <sql id="Base_Column_List">
+        a.construction_id,         a.project_id,         a.turbine_code,         a.start_time, 
+        a.end_time,         a.temperature,         a.wind_speed,         a.image_count, 
+        a.weather_code,         a.status_id,         a.created_at
+    </sql>
+
+    <select id="queryBySelective" resultType="com.dite.znpt.domain.vo.TConstructionResp">
+        select
+            <include refid="Base_Column_List"/>
+        from t_construction a
+        <where>
+            <if test="keyword != null and keyword != ''">
+#                and (a.TODO like concat('%', #{keyword,jdbcType=VARCHAR}, '%') or a.TODO like concat('%', #{keyword,jdbcType=VARCHAR}, '%'))
+            </if>
+            <if test="constructionId != null and constructionId != ''">
+                and a.construction_id like concat ('%', #{constructionId}, '%')
+            </if>
+            <if test="projectId != null and projectId != ''">
+                and a.project_id like concat ('%', #{projectId}, '%')
+            </if>
+            <if test="turbineCode != null and turbineCode != ''">
+                and a.turbine_code like concat ('%', #{turbineCode}, '%')
+            </if>
+            <if test="startTime != null">
+                and a.start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and a.end_time = #{endTime}
+            </if>
+            <if test="temperature != null">
+                and a.temperature = #{temperature}
+            </if>
+            <if test="windSpeed != null">
+                and a.wind_speed = #{windSpeed}
+            </if>
+            <if test="imageCount != null">
+                and a.image_count = #{imageCount}
+            </if>
+            <if test="weatherCode != null and weatherCode != ''">
+                and a.weather_code like concat ('%', #{weatherCode}, '%')
+            </if>
+            <if test="statusId != null and statusId != ''">
+                and a.status_id like concat ('%', #{statusId}, '%')
+            </if>
+            <if test="createdAt != null">
+                and a.created_at = #{createdAt}
+            </if>
+        </where>
+    </select>
+</mapper>
+

@@ -7,7 +7,7 @@ import com.dite.znpt.domain.entity.TurbineEntity;
 
 /**
  * @author huise23
- * @date 2025/04/09 14:39
+ * @date 2025/04/11 23:17
  * @Description: 机组-项目关联响应实体
  */
 @Data

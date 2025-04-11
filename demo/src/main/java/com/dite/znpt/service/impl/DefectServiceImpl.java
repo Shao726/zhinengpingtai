@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import lombok.RequiredArgsConstructor;
 import com.dite.znpt.util.PageUtil;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 缺陷记录表服务实现类
  */
 @Service
@@ -27,18 +26,18 @@ public class DefectServiceImpl extends ServiceImpl<DefectMapper, DefectEntity> i
      * 功能描述：查询缺陷记录列表
      *
      * @param defectReq 缺陷记录信息
-     * @return {@link PageInfo }<{@link DefectResp }>
+     * @return {@link List }<{@link DefectResp }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
-    public PageInfo<DefectResp> selectList(DefectListReq defectReq) {
+    public List<DefectResp> selectList(DefectListReq defectReq) {
         PageUtil.startPage();
         List<DefectResp> defectList= this.baseMapper.queryBySelective(defectReq);
         defectList.forEach(resp -> {
             
         });
-        return new PageInfo<>(defectList);
+        return defectList;
     }
 
     /**
@@ -47,15 +46,15 @@ public class DefectServiceImpl extends ServiceImpl<DefectMapper, DefectEntity> i
      * @param defectId 缺陷记录Id
      * @return {@link DefectResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public DefectResp selectById(String defectId) {
         DefectListReq defectReq = new DefectListReq();
         defectReq.setDefectId(defectId);
 
-        PageInfo<DefectResp> page = selectList(defectReq);
-        return page.hasContent() ? CollUtil.getFirst(page.getList()) : new DefectResp();
+        List<DefectResp> list = selectList(defectReq);
+        return list.isEmpty() ? CollUtil.getFirst(list) : new DefectResp();
     }
 
     /**
@@ -63,7 +62,7 @@ public class DefectServiceImpl extends ServiceImpl<DefectMapper, DefectEntity> i
      *
      * @param defect 缺陷记录
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void saveData(DefectEntity defect) {
@@ -76,7 +75,7 @@ public class DefectServiceImpl extends ServiceImpl<DefectMapper, DefectEntity> i
      *
      * @param defect 缺陷记录
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void updateData(DefectEntity defect) {
@@ -89,7 +88,7 @@ public class DefectServiceImpl extends ServiceImpl<DefectMapper, DefectEntity> i
      *
      * @param defectId 缺陷记录Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void deleteById(String defectId) {

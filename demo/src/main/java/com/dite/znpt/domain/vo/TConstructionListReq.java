@@ -1,6 +1,7 @@
 package com.dite.znpt.domain.vo;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.io.Serializable;
 
 import io.swagger.annotations.ApiModel;
@@ -9,14 +10,14 @@ import lombok.Data;
 
 /**
  * @author huise23
- * @date 2025/04/09 14:39
+ * @date 2025/04/11 23:17
  * @Description: 施工信息请求实体
  */
 @Data
 @ApiModel("施工信息列表请求实体")
 public class TConstructionListReq implements Serializable {
 
-    private static final long serialVersionUID = -21906313443453398L;
+    private static final long serialVersionUID = -20191616975838303L;
 
     @ApiModelProperty("查询关键字")
     private String keyword;
@@ -31,16 +32,16 @@ public class TConstructionListReq implements Serializable {
     private String turbineCode;
 
     @ApiModelProperty("作业开始时间")
-    private LocalDateTime startTime;
+    private Date startTime;
 
     @ApiModelProperty("作业结束时间")
-    private LocalDateTime endTime;
+    private Date endTime;
 
     @ApiModelProperty("温度(℃)")
-    private Double temperature;
+    private BigDecimal temperature;
 
     @ApiModelProperty("风速(m/s)")
-    private Double windSpeed;
+    private BigDecimal windSpeed;
 
     @ApiModelProperty("采集图片数量")
     private Integer imageCount;
@@ -48,11 +49,11 @@ public class TConstructionListReq implements Serializable {
     @ApiModelProperty("天气id")
     private String weatherCode;
 
-    @ApiModelProperty("${column.comment}")
+    @ApiModelProperty("施工状态")
     private String statusId;
 
-    @ApiModelProperty("${column.comment}")
-    private LocalDateTime createdAt;
+    @ApiModelProperty("当前时间")
+    private Date createdAt;
 
 }
 

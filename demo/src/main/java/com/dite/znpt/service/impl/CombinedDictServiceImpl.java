@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import lombok.RequiredArgsConstructor;
 import com.dite.znpt.util.PageUtil;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 字典表服务实现类
  */
 @Service
@@ -27,18 +26,18 @@ public class CombinedDictServiceImpl extends ServiceImpl<CombinedDictMapper, Com
      * 功能描述：查询字典列表
      *
      * @param combinedDictReq 字典信息
-     * @return {@link PageInfo }<{@link CombinedDictResp }>
+     * @return {@link List }<{@link CombinedDictResp }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
-    public PageInfo<CombinedDictResp> selectList(CombinedDictListReq combinedDictReq) {
+    public List<CombinedDictResp> selectList(CombinedDictListReq combinedDictReq) {
         PageUtil.startPage();
         List<CombinedDictResp> combinedDictList= this.baseMapper.queryBySelective(combinedDictReq);
         combinedDictList.forEach(resp -> {
             
         });
-        return new PageInfo<>(combinedDictList);
+        return combinedDictList;
     }
 
     /**
@@ -47,15 +46,15 @@ public class CombinedDictServiceImpl extends ServiceImpl<CombinedDictMapper, Com
      * @param dictId 字典Id
      * @return {@link CombinedDictResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public CombinedDictResp selectById(String dictId) {
         CombinedDictListReq combinedDictReq = new CombinedDictListReq();
         combinedDictReq.setDictId(dictId);
 
-        PageInfo<CombinedDictResp> page = selectList(combinedDictReq);
-        return page.hasContent() ? CollUtil.getFirst(page.getList()) : new CombinedDictResp();
+        List<CombinedDictResp> list = selectList(combinedDictReq);
+        return list.isEmpty() ? CollUtil.getFirst(list) : new CombinedDictResp();
     }
 
     /**
@@ -63,7 +62,7 @@ public class CombinedDictServiceImpl extends ServiceImpl<CombinedDictMapper, Com
      *
      * @param combinedDict 字典
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void saveData(CombinedDictEntity combinedDict) {
@@ -76,7 +75,7 @@ public class CombinedDictServiceImpl extends ServiceImpl<CombinedDictMapper, Com
      *
      * @param combinedDict 字典
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void updateData(CombinedDictEntity combinedDict) {
@@ -89,7 +88,7 @@ public class CombinedDictServiceImpl extends ServiceImpl<CombinedDictMapper, Com
      *
      * @param dictId 字典Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void deleteById(String dictId) {

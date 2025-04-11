@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import lombok.RequiredArgsConstructor;
 import com.dite.znpt.util.PageUtil;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 天气类型表服务实现类
  */
 @Service
@@ -27,18 +26,18 @@ public class WeatherTypeServiceImpl extends ServiceImpl<WeatherTypeMapper, Weath
      * 功能描述：查询天气类型列表
      *
      * @param weatherTypeReq 天气类型信息
-     * @return {@link PageInfo }<{@link WeatherTypeResp }>
+     * @return {@link List }<{@link WeatherTypeResp }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
-    public PageInfo<WeatherTypeResp> selectList(WeatherTypeListReq weatherTypeReq) {
+    public List<WeatherTypeResp> selectList(WeatherTypeListReq weatherTypeReq) {
         PageUtil.startPage();
         List<WeatherTypeResp> weatherTypeList= this.baseMapper.queryBySelective(weatherTypeReq);
         weatherTypeList.forEach(resp -> {
             
         });
-        return new PageInfo<>(weatherTypeList);
+        return weatherTypeList;
     }
 
     /**
@@ -47,15 +46,15 @@ public class WeatherTypeServiceImpl extends ServiceImpl<WeatherTypeMapper, Weath
      * @param weatherCode 天气类型Id
      * @return {@link WeatherTypeResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public WeatherTypeResp selectById(String weatherCode) {
         WeatherTypeListReq weatherTypeReq = new WeatherTypeListReq();
         weatherTypeReq.setWeatherCode(weatherCode);
 
-        PageInfo<WeatherTypeResp> page = selectList(weatherTypeReq);
-        return page.hasContent() ? CollUtil.getFirst(page.getList()) : new WeatherTypeResp();
+        List<WeatherTypeResp> list = selectList(weatherTypeReq);
+        return list.isEmpty() ? CollUtil.getFirst(list) : new WeatherTypeResp();
     }
 
     /**
@@ -63,7 +62,7 @@ public class WeatherTypeServiceImpl extends ServiceImpl<WeatherTypeMapper, Weath
      *
      * @param weatherType 天气类型
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void saveData(WeatherTypeEntity weatherType) {
@@ -76,7 +75,7 @@ public class WeatherTypeServiceImpl extends ServiceImpl<WeatherTypeMapper, Weath
      *
      * @param weatherType 天气类型
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void updateData(WeatherTypeEntity weatherType) {
@@ -89,7 +88,7 @@ public class WeatherTypeServiceImpl extends ServiceImpl<WeatherTypeMapper, Weath
      *
      * @param weatherCode 天气类型Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void deleteById(String weatherCode) {

@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 缺陷记录表数据库访问层
  */
 public interface DefectMapper extends BaseMapper<DefectEntity> {

@@ -4,13 +4,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dite.znpt.domain.entity.CombinedDictEntity;
 import com.dite.znpt.domain.vo.CombinedDictListReq;
 import com.dite.znpt.domain.vo.CombinedDictResp;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 字典表服务接口
  */
 public interface CombinedDictService extends IService<CombinedDictEntity> {
@@ -21,9 +20,9 @@ public interface CombinedDictService extends IService<CombinedDictEntity> {
      * @param combinedDictReq 字典
      * @return {@link List }<{@link CombinedDictEntity }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
-    PageInfo<CombinedDictResp> selectList(CombinedDictListReq combinedDictReq);
+    List<CombinedDictResp> selectList(CombinedDictListReq combinedDictReq);
 
     /**
      * 功能描述：查询单条字典
@@ -31,7 +30,7 @@ public interface CombinedDictService extends IService<CombinedDictEntity> {
      * @param dictId 字典Id
      * @return {@link CombinedDictResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     CombinedDictResp selectById(String dictId);
 
@@ -40,7 +39,7 @@ public interface CombinedDictService extends IService<CombinedDictEntity> {
      *
      * @param combinedDict 字典
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void saveData(CombinedDictEntity combinedDict);
 
@@ -49,7 +48,7 @@ public interface CombinedDictService extends IService<CombinedDictEntity> {
      *
      * @param combinedDict 字典
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void updateData(CombinedDictEntity combinedDict);
 
@@ -58,7 +57,7 @@ public interface CombinedDictService extends IService<CombinedDictEntity> {
      *
      * @param dictId 字典Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void deleteById(String dictId);
 }

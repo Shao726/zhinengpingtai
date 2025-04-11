@@ -4,13 +4,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dite.znpt.domain.entity.ProjectEntity;
 import com.dite.znpt.domain.vo.ProjectListReq;
 import com.dite.znpt.domain.vo.ProjectResp;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 项目信息表服务接口
  */
 public interface ProjectService extends IService<ProjectEntity> {
@@ -21,9 +20,9 @@ public interface ProjectService extends IService<ProjectEntity> {
      * @param projectReq 项目信息
      * @return {@link List }<{@link ProjectEntity }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
-    PageInfo<ProjectResp> selectList(ProjectListReq projectReq);
+    List<ProjectResp> selectList(ProjectListReq projectReq);
 
     /**
      * 功能描述：查询单条项目信息
@@ -31,7 +30,7 @@ public interface ProjectService extends IService<ProjectEntity> {
      * @param projectId 项目信息Id
      * @return {@link ProjectResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     ProjectResp selectById(String projectId);
 
@@ -40,7 +39,7 @@ public interface ProjectService extends IService<ProjectEntity> {
      *
      * @param project 项目信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void saveData(ProjectEntity project);
 
@@ -49,7 +48,7 @@ public interface ProjectService extends IService<ProjectEntity> {
      *
      * @param project 项目信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void updateData(ProjectEntity project);
 
@@ -58,7 +57,7 @@ public interface ProjectService extends IService<ProjectEntity> {
      *
      * @param projectId 项目信息Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void deleteById(String projectId);
 }

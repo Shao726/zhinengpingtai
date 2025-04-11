@@ -8,14 +8,14 @@ import lombok.Data;
 
 /**
  * @author huise23
- * @date 2025/04/09 14:39
+ * @date 2025/04/11 23:17
  * @Description: 项目信息请求实体
  */
 @Data
 @ApiModel("项目信息列表请求实体")
 public class ProjectListReq implements Serializable {
 
-    private static final long serialVersionUID = -18175772339033037L;
+    private static final long serialVersionUID = -74121355744234753L;
 
     @ApiModelProperty("查询关键字")
     private String keyword;
@@ -32,10 +32,7 @@ public class ProjectListReq implements Serializable {
     @ApiModelProperty("风场地址")
     private String farmAddress;
 
-    @ApiModelProperty("${column.comment}")
-    private String clientId;
-
-    @ApiModelProperty("xx，字典xx")
+    @ApiModelProperty("检查方式，字典method_id")
     private String methodId;
 
     @ApiModelProperty("项目规模")
@@ -43,6 +40,9 @@ public class ProjectListReq implements Serializable {
 
     @ApiModelProperty("风机型号")
     private String turbineModel;
+
+    @ApiModelProperty("项目状态，字典project_status")
+    private String status;
 
 }
 

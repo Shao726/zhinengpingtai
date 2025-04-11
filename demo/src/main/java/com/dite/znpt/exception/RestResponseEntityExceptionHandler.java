@@ -21,13 +21,13 @@ public class RestResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public final Result<?> handler(Exception e) {
         logger.error("出现系统异常：{},异常类型：{},详细堆栈：", e.getMessage(), e.getClass(), e);
-        return Result.warn(Constants.SYSTEM_EXCEPTION, Constants.SERVICE_EXCEPTION_MESSAGE);
+        return Result.error(Constants.SYSTEM_EXCEPTION, Constants.SERVICE_EXCEPTION_MESSAGE);
     }
 
     @ExceptionHandler(ServiceException.class)
     public final Result<?> handler(ServiceException e) {
         logger.error("出现服务异常：{},异常类型：{},详细堆栈：", e.getMessage(), e.getClass(), e);
-        return Result.warn(Constants.SERVICE_EXCEPTION, e.getMessage());
+        return Result.error(Constants.SERVICE_EXCEPTION, e.getMessage());
     }
 
     /**
@@ -46,6 +46,6 @@ public class RestResponseEntityExceptionHandler {
             sb.append(fieldError.getField()).append(fieldError.getDefaultMessage()).append(";");
         });
 
-        return Result.warn(Constants.PARAMETER_EXCEPTION, sb.toString());
+        return Result.error(Constants.PARAMETER_EXCEPTION, sb.toString());
     }
 }

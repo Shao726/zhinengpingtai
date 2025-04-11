@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import lombok.RequiredArgsConstructor;
 import com.dite.znpt.util.PageUtil;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 机组-项目关联表服务实现类
  */
 @Service
@@ -27,18 +26,18 @@ public class TurbineServiceImpl extends ServiceImpl<TurbineMapper, TurbineEntity
      * 功能描述：查询机组-项目关联列表
      *
      * @param turbineReq 机组-项目关联信息
-     * @return {@link PageInfo }<{@link TurbineResp }>
+     * @return {@link List }<{@link TurbineResp }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
-    public PageInfo<TurbineResp> selectList(TurbineListReq turbineReq) {
+    public List<TurbineResp> selectList(TurbineListReq turbineReq) {
         PageUtil.startPage();
         List<TurbineResp> turbineList= this.baseMapper.queryBySelective(turbineReq);
         turbineList.forEach(resp -> {
             
         });
-        return new PageInfo<>(turbineList);
+        return turbineList;
     }
 
     /**
@@ -47,15 +46,15 @@ public class TurbineServiceImpl extends ServiceImpl<TurbineMapper, TurbineEntity
      * @param turbineCode 机组-项目关联Id
      * @return {@link TurbineResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public TurbineResp selectById(String turbineCode) {
         TurbineListReq turbineReq = new TurbineListReq();
         turbineReq.setTurbineCode(turbineCode);
 
-        PageInfo<TurbineResp> page = selectList(turbineReq);
-        return page.hasContent() ? CollUtil.getFirst(page.getList()) : new TurbineResp();
+        List<TurbineResp> list = selectList(turbineReq);
+        return list.isEmpty() ? CollUtil.getFirst(list) : new TurbineResp();
     }
 
     /**
@@ -63,7 +62,7 @@ public class TurbineServiceImpl extends ServiceImpl<TurbineMapper, TurbineEntity
      *
      * @param turbine 机组-项目关联
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void saveData(TurbineEntity turbine) {
@@ -76,7 +75,7 @@ public class TurbineServiceImpl extends ServiceImpl<TurbineMapper, TurbineEntity
      *
      * @param turbine 机组-项目关联
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void updateData(TurbineEntity turbine) {
@@ -89,7 +88,7 @@ public class TurbineServiceImpl extends ServiceImpl<TurbineMapper, TurbineEntity
      *
      * @param turbineCode 机组-项目关联Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void deleteById(String turbineCode) {

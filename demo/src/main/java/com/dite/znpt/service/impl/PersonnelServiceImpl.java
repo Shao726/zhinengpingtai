@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import lombok.RequiredArgsConstructor;
 import com.dite.znpt.util.PageUtil;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 人员信息表服务实现类
  */
 @Service
@@ -27,18 +26,18 @@ public class PersonnelServiceImpl extends ServiceImpl<PersonnelMapper, Personnel
      * 功能描述：查询人员信息列表
      *
      * @param personnelReq 人员信息信息
-     * @return {@link PageInfo }<{@link PersonnelResp }>
+     * @return {@link List }<{@link PersonnelResp }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
-    public PageInfo<PersonnelResp> selectList(PersonnelListReq personnelReq) {
+    public List<PersonnelResp> selectList(PersonnelListReq personnelReq) {
         PageUtil.startPage();
         List<PersonnelResp> personnelList= this.baseMapper.queryBySelective(personnelReq);
         personnelList.forEach(resp -> {
             
         });
-        return new PageInfo<>(personnelList);
+        return personnelList;
     }
 
     /**
@@ -47,15 +46,15 @@ public class PersonnelServiceImpl extends ServiceImpl<PersonnelMapper, Personnel
      * @param personId 人员信息Id
      * @return {@link PersonnelResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public PersonnelResp selectById(String personId) {
         PersonnelListReq personnelReq = new PersonnelListReq();
         personnelReq.setPersonId(personId);
 
-        PageInfo<PersonnelResp> page = selectList(personnelReq);
-        return page.hasContent() ? CollUtil.getFirst(page.getList()) : new PersonnelResp();
+        List<PersonnelResp> list = selectList(personnelReq);
+        return list.isEmpty() ? CollUtil.getFirst(list) : new PersonnelResp();
     }
 
     /**
@@ -63,7 +62,7 @@ public class PersonnelServiceImpl extends ServiceImpl<PersonnelMapper, Personnel
      *
      * @param personnel 人员信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void saveData(PersonnelEntity personnel) {
@@ -76,7 +75,7 @@ public class PersonnelServiceImpl extends ServiceImpl<PersonnelMapper, Personnel
      *
      * @param personnel 人员信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void updateData(PersonnelEntity personnel) {
@@ -89,7 +88,7 @@ public class PersonnelServiceImpl extends ServiceImpl<PersonnelMapper, Personnel
      *
      * @param personId 人员信息Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void deleteById(String personId) {

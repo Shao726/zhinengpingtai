@@ -8,14 +8,14 @@ import lombok.Data;
 
 /**
  * @author huise23
- * @date 2025/04/09 14:39
+ * @date 2025/04/11 23:17
  * @Description: 人员信息请求实体
  */
 @Data
 @ApiModel("人员信息列表请求实体")
 public class PersonnelListReq implements Serializable {
 
-    private static final long serialVersionUID = -82418737525015596L;
+    private static final long serialVersionUID = -10363935468256543L;
 
     @ApiModelProperty("查询关键字")
     private String keyword;
@@ -34,6 +34,9 @@ public class PersonnelListReq implements Serializable {
 
     @ApiModelProperty("密码")
     private String password;
+
+    @ApiModelProperty("1正常0禁用")
+    private Integer status;
 
 }
 

@@ -3,7 +3,7 @@
 <mapper namespace="com.dite.znpt.mapper.FileInfoMapper">
 
     <sql id="Base_Column_List">
-        a.file_id,         a.business_id,         a.minio_path
+        a.file_id,         a.business_id,         a.minio_path,         a.business_type
     </sql>
 
     <select id="queryBySelective" resultType="com.dite.znpt.domain.vo.FileInfoResp">
@@ -22,6 +22,9 @@
             </if>
             <if test="minioPath != null and minioPath != ''">
                 and a.minio_path like concat ('%', #{minioPath}, '%')
+            </if>
+            <if test="businessType != null and businessType != ''">
+                and a.business_type like concat ('%', #{businessType}, '%')
             </if>
         </where>
     </select>

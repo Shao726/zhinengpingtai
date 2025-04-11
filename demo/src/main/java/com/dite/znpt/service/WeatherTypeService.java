@@ -4,13 +4,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dite.znpt.domain.entity.WeatherTypeEntity;
 import com.dite.znpt.domain.vo.WeatherTypeListReq;
 import com.dite.znpt.domain.vo.WeatherTypeResp;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 天气类型表服务接口
  */
 public interface WeatherTypeService extends IService<WeatherTypeEntity> {
@@ -21,9 +20,9 @@ public interface WeatherTypeService extends IService<WeatherTypeEntity> {
      * @param weatherTypeReq 天气类型
      * @return {@link List }<{@link WeatherTypeEntity }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
-    PageInfo<WeatherTypeResp> selectList(WeatherTypeListReq weatherTypeReq);
+    List<WeatherTypeResp> selectList(WeatherTypeListReq weatherTypeReq);
 
     /**
      * 功能描述：查询单条天气类型
@@ -31,7 +30,7 @@ public interface WeatherTypeService extends IService<WeatherTypeEntity> {
      * @param weatherCode 天气类型Id
      * @return {@link WeatherTypeResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     WeatherTypeResp selectById(String weatherCode);
 
@@ -40,7 +39,7 @@ public interface WeatherTypeService extends IService<WeatherTypeEntity> {
      *
      * @param weatherType 天气类型
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void saveData(WeatherTypeEntity weatherType);
 
@@ -49,7 +48,7 @@ public interface WeatherTypeService extends IService<WeatherTypeEntity> {
      *
      * @param weatherType 天气类型
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void updateData(WeatherTypeEntity weatherType);
 
@@ -58,7 +57,7 @@ public interface WeatherTypeService extends IService<WeatherTypeEntity> {
      *
      * @param weatherCode 天气类型Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void deleteById(String weatherCode);
 }

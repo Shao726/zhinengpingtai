@@ -4,13 +4,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dite.znpt.domain.entity.TConstructionEntity;
 import com.dite.znpt.domain.vo.TConstructionListReq;
 import com.dite.znpt.domain.vo.TConstructionResp;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 施工信息表服务接口
  */
 public interface TConstructionService extends IService<TConstructionEntity> {
@@ -21,9 +20,9 @@ public interface TConstructionService extends IService<TConstructionEntity> {
      * @param tConstructionReq 施工信息
      * @return {@link List }<{@link TConstructionEntity }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
-    PageInfo<TConstructionResp> selectList(TConstructionListReq tConstructionReq);
+    List<TConstructionResp> selectList(TConstructionListReq tConstructionReq);
 
     /**
      * 功能描述：查询单条施工信息
@@ -31,7 +30,7 @@ public interface TConstructionService extends IService<TConstructionEntity> {
      * @param constructionId 施工信息Id
      * @return {@link TConstructionResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     TConstructionResp selectById(String constructionId);
 
@@ -40,7 +39,7 @@ public interface TConstructionService extends IService<TConstructionEntity> {
      *
      * @param tConstruction 施工信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void saveData(TConstructionEntity tConstruction);
 
@@ -49,7 +48,7 @@ public interface TConstructionService extends IService<TConstructionEntity> {
      *
      * @param tConstruction 施工信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void updateData(TConstructionEntity tConstruction);
 
@@ -58,7 +57,7 @@ public interface TConstructionService extends IService<TConstructionEntity> {
      *
      * @param constructionId 施工信息Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void deleteById(String constructionId);
 }

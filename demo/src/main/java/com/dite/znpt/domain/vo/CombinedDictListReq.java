@@ -8,14 +8,14 @@ import lombok.Data;
 
 /**
  * @author huise23
- * @date 2025/04/09 14:39
+ * @date 2025/04/11 23:17
  * @Description: 字典请求实体
  */
 @Data
 @ApiModel("字典列表请求实体")
 public class CombinedDictListReq implements Serializable {
 
-    private static final long serialVersionUID = 194796910937180049L;
+    private static final long serialVersionUID = -71621812451720363L;
 
     @ApiModelProperty("查询关键字")
     private String keyword;
@@ -36,7 +36,7 @@ public class CombinedDictListReq implements Serializable {
     private Integer sortOrder;
 
     @ApiModelProperty("是否字典终值")
-    private Integer finalState;
+    private Boolean finalState;
 
 }
 

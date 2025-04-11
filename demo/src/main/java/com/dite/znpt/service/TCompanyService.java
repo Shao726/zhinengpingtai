@@ -4,13 +4,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dite.znpt.domain.entity.TCompanyEntity;
 import com.dite.znpt.domain.vo.TCompanyListReq;
 import com.dite.znpt.domain.vo.TCompanyResp;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 公司信息表服务接口
  */
 public interface TCompanyService extends IService<TCompanyEntity> {
@@ -21,9 +20,9 @@ public interface TCompanyService extends IService<TCompanyEntity> {
      * @param tCompanyReq 公司信息
      * @return {@link List }<{@link TCompanyEntity }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
-    PageInfo<TCompanyResp> selectList(TCompanyListReq tCompanyReq);
+    List<TCompanyResp> selectList(TCompanyListReq tCompanyReq);
 
     /**
      * 功能描述：查询单条公司信息
@@ -31,7 +30,7 @@ public interface TCompanyService extends IService<TCompanyEntity> {
      * @param companyId 公司信息Id
      * @return {@link TCompanyResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     TCompanyResp selectById(String companyId);
 
@@ -40,7 +39,7 @@ public interface TCompanyService extends IService<TCompanyEntity> {
      *
      * @param tCompany 公司信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void saveData(TCompanyEntity tCompany);
 
@@ -49,7 +48,7 @@ public interface TCompanyService extends IService<TCompanyEntity> {
      *
      * @param tCompany 公司信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void updateData(TCompanyEntity tCompany);
 
@@ -58,7 +57,7 @@ public interface TCompanyService extends IService<TCompanyEntity> {
      *
      * @param companyId 公司信息Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void deleteById(String companyId);
 }

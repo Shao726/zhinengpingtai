@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import lombok.RequiredArgsConstructor;
 import com.dite.znpt.util.PageUtil;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 项目信息表服务实现类
  */
 @Service
@@ -27,18 +26,18 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectEntity
      * 功能描述：查询项目信息列表
      *
      * @param projectReq 项目信息信息
-     * @return {@link PageInfo }<{@link ProjectResp }>
+     * @return {@link List }<{@link ProjectResp }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
-    public PageInfo<ProjectResp> selectList(ProjectListReq projectReq) {
+    public List<ProjectResp> selectList(ProjectListReq projectReq) {
         PageUtil.startPage();
         List<ProjectResp> projectList= this.baseMapper.queryBySelective(projectReq);
         projectList.forEach(resp -> {
             
         });
-        return new PageInfo<>(projectList);
+        return projectList;
     }
 
     /**
@@ -47,15 +46,15 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectEntity
      * @param projectId 项目信息Id
      * @return {@link ProjectResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public ProjectResp selectById(String projectId) {
         ProjectListReq projectReq = new ProjectListReq();
         projectReq.setProjectId(projectId);
 
-        PageInfo<ProjectResp> page = selectList(projectReq);
-        return page.hasContent() ? CollUtil.getFirst(page.getList()) : new ProjectResp();
+        List<ProjectResp> list = selectList(projectReq);
+        return list.isEmpty() ? CollUtil.getFirst(list) : new ProjectResp();
     }
 
     /**
@@ -63,7 +62,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectEntity
      *
      * @param project 项目信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void saveData(ProjectEntity project) {
@@ -76,7 +75,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectEntity
      *
      * @param project 项目信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void updateData(ProjectEntity project) {
@@ -89,7 +88,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectEntity
      *
      * @param projectId 项目信息Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void deleteById(String projectId) {

@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import lombok.RequiredArgsConstructor;
 import com.dite.znpt.util.PageUtil;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 文件信息表服务实现类
  */
 @Service
@@ -27,18 +26,18 @@ public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfoEnt
      * 功能描述：查询文件信息列表
      *
      * @param fileInfoReq 文件信息信息
-     * @return {@link PageInfo }<{@link FileInfoResp }>
+     * @return {@link List }<{@link FileInfoResp }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
-    public PageInfo<FileInfoResp> selectList(FileInfoListReq fileInfoReq) {
+    public List<FileInfoResp> selectList(FileInfoListReq fileInfoReq) {
         PageUtil.startPage();
         List<FileInfoResp> fileInfoList= this.baseMapper.queryBySelective(fileInfoReq);
         fileInfoList.forEach(resp -> {
             
         });
-        return new PageInfo<>(fileInfoList);
+        return fileInfoList;
     }
 
     /**
@@ -47,15 +46,15 @@ public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfoEnt
      * @param fileId 文件信息Id
      * @return {@link FileInfoResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public FileInfoResp selectById(Long fileId) {
         FileInfoListReq fileInfoReq = new FileInfoListReq();
         fileInfoReq.setFileId(fileId);
 
-        PageInfo<FileInfoResp> page = selectList(fileInfoReq);
-        return page.hasContent() ? CollUtil.getFirst(page.getList()) : new FileInfoResp();
+        List<FileInfoResp> list = selectList(fileInfoReq);
+        return list.isEmpty() ? CollUtil.getFirst(list) : new FileInfoResp();
     }
 
     /**
@@ -63,7 +62,7 @@ public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfoEnt
      *
      * @param fileInfo 文件信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void saveData(FileInfoEntity fileInfo) {
@@ -76,7 +75,7 @@ public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfoEnt
      *
      * @param fileInfo 文件信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void updateData(FileInfoEntity fileInfo) {
@@ -89,7 +88,7 @@ public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfoEnt
      *
      * @param fileId 文件信息Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void deleteById(Long fileId) {

@@ -1,5 +1,6 @@
 package com.dite.znpt.domain;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,12 +33,15 @@ public class AuditableEntity implements Serializable {
 //    @ApiModelProperty(hidden = true)
 //    private Date updateTime;
 
+    @ExcelIgnore
     @ApiModelProperty(value = "id集合", example = "[]", notes = "id集合")
     private List<String> idList;
 
+    @ExcelIgnore
     @ApiModelProperty(value = "当前页", example = "1", notes = "0")
     int page = 1;
 
+    @ExcelIgnore
     @ApiModelProperty(value = "页大小", example = "10", notes = "10")
     int pageSize = 10;
 }

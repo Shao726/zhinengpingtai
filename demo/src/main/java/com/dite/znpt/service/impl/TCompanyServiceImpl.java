@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import lombok.RequiredArgsConstructor;
 import com.dite.znpt.util.PageUtil;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 公司信息表服务实现类
  */
 @Service
@@ -27,18 +26,18 @@ public class TCompanyServiceImpl extends ServiceImpl<TCompanyMapper, TCompanyEnt
      * 功能描述：查询公司信息列表
      *
      * @param tCompanyReq 公司信息信息
-     * @return {@link PageInfo }<{@link TCompanyResp }>
+     * @return {@link List }<{@link TCompanyResp }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
-    public PageInfo<TCompanyResp> selectList(TCompanyListReq tCompanyReq) {
+    public List<TCompanyResp> selectList(TCompanyListReq tCompanyReq) {
         PageUtil.startPage();
         List<TCompanyResp> tCompanyList= this.baseMapper.queryBySelective(tCompanyReq);
         tCompanyList.forEach(resp -> {
             
         });
-        return new PageInfo<>(tCompanyList);
+        return tCompanyList;
     }
 
     /**
@@ -47,15 +46,15 @@ public class TCompanyServiceImpl extends ServiceImpl<TCompanyMapper, TCompanyEnt
      * @param companyId 公司信息Id
      * @return {@link TCompanyResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public TCompanyResp selectById(String companyId) {
         TCompanyListReq tCompanyReq = new TCompanyListReq();
         tCompanyReq.setCompanyId(companyId);
 
-        PageInfo<TCompanyResp> page = selectList(tCompanyReq);
-        return page.hasContent() ? CollUtil.getFirst(page.getList()) : new TCompanyResp();
+        List<TCompanyResp> list = selectList(tCompanyReq);
+        return list.isEmpty() ? CollUtil.getFirst(list) : new TCompanyResp();
     }
 
     /**
@@ -63,7 +62,7 @@ public class TCompanyServiceImpl extends ServiceImpl<TCompanyMapper, TCompanyEnt
      *
      * @param tCompany 公司信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void saveData(TCompanyEntity tCompany) {
@@ -76,7 +75,7 @@ public class TCompanyServiceImpl extends ServiceImpl<TCompanyMapper, TCompanyEnt
      *
      * @param tCompany 公司信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void updateData(TCompanyEntity tCompany) {
@@ -89,7 +88,7 @@ public class TCompanyServiceImpl extends ServiceImpl<TCompanyMapper, TCompanyEnt
      *
      * @param companyId 公司信息Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void deleteById(String companyId) {

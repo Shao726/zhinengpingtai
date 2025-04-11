@@ -4,7 +4,7 @@
 
     <sql id="Base_Column_List">
         a.person_id,         a.name,         a.role_type,         a.company_id, 
-        a.password
+        a.password,         a.status
     </sql>
 
     <select id="queryBySelective" resultType="com.dite.znpt.domain.vo.PersonnelResp">
@@ -29,6 +29,9 @@
             </if>
             <if test="password != null and password != ''">
                 and a.password like concat ('%', #{password}, '%')
+            </if>
+            <if test="status != null">
+                and a.status = #{status}
             </if>
         </where>
     </select>

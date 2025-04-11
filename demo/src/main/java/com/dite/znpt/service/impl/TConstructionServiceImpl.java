@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import lombok.RequiredArgsConstructor;
 import com.dite.znpt.util.PageUtil;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 施工信息表服务实现类
  */
 @Service
@@ -27,18 +26,18 @@ public class TConstructionServiceImpl extends ServiceImpl<TConstructionMapper, T
      * 功能描述：查询施工信息列表
      *
      * @param tConstructionReq 施工信息信息
-     * @return {@link PageInfo }<{@link TConstructionResp }>
+     * @return {@link List }<{@link TConstructionResp }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
-    public PageInfo<TConstructionResp> selectList(TConstructionListReq tConstructionReq) {
+    public List<TConstructionResp> selectList(TConstructionListReq tConstructionReq) {
         PageUtil.startPage();
         List<TConstructionResp> tConstructionList= this.baseMapper.queryBySelective(tConstructionReq);
         tConstructionList.forEach(resp -> {
             
         });
-        return new PageInfo<>(tConstructionList);
+        return tConstructionList;
     }
 
     /**
@@ -47,15 +46,15 @@ public class TConstructionServiceImpl extends ServiceImpl<TConstructionMapper, T
      * @param constructionId 施工信息Id
      * @return {@link TConstructionResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public TConstructionResp selectById(String constructionId) {
         TConstructionListReq tConstructionReq = new TConstructionListReq();
         tConstructionReq.setConstructionId(constructionId);
 
-        PageInfo<TConstructionResp> page = selectList(tConstructionReq);
-        return page.hasContent() ? CollUtil.getFirst(page.getList()) : new TConstructionResp();
+        List<TConstructionResp> list = selectList(tConstructionReq);
+        return list.isEmpty() ? CollUtil.getFirst(list) : new TConstructionResp();
     }
 
     /**
@@ -63,7 +62,7 @@ public class TConstructionServiceImpl extends ServiceImpl<TConstructionMapper, T
      *
      * @param tConstruction 施工信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void saveData(TConstructionEntity tConstruction) {
@@ -76,7 +75,7 @@ public class TConstructionServiceImpl extends ServiceImpl<TConstructionMapper, T
      *
      * @param tConstruction 施工信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void updateData(TConstructionEntity tConstruction) {
@@ -89,7 +88,7 @@ public class TConstructionServiceImpl extends ServiceImpl<TConstructionMapper, T
      *
      * @param constructionId 施工信息Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     @Override
     public void deleteById(String constructionId) {

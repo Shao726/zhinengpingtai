@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 天气类型表数据库访问层
  */
 public interface WeatherTypeMapper extends BaseMapper<WeatherTypeEntity> {

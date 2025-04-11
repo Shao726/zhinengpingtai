@@ -4,7 +4,7 @@
 
     <sql id="Base_Column_List">
         a.project_id,         a.project_name,         a.farm_name,         a.farm_address, 
-        a.client_id,         a.method_id,         a.scale,         a.turbine_model
+        a.method_id,         a.scale,         a.turbine_model,         a.status
     </sql>
 
     <select id="queryBySelective" resultType="com.dite.znpt.domain.vo.ProjectResp">
@@ -27,9 +27,6 @@
             <if test="farmAddress != null and farmAddress != ''">
                 and a.farm_address like concat ('%', #{farmAddress}, '%')
             </if>
-            <if test="clientId != null and clientId != ''">
-                and a.client_id like concat ('%', #{clientId}, '%')
-            </if>
             <if test="methodId != null and methodId != ''">
                 and a.method_id like concat ('%', #{methodId}, '%')
             </if>
@@ -38,6 +35,9 @@
             </if>
             <if test="turbineModel != null and turbineModel != ''">
                 and a.turbine_model like concat ('%', #{turbineModel}, '%')
+            </if>
+            <if test="status != null and status != ''">
+                and a.status like concat ('%', #{status}, '%')
             </if>
         </where>
     </select>

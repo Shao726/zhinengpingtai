@@ -4,13 +4,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dite.znpt.domain.entity.PersonnelEntity;
 import com.dite.znpt.domain.vo.PersonnelListReq;
 import com.dite.znpt.domain.vo.PersonnelResp;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 人员信息表服务接口
  */
 public interface PersonnelService extends IService<PersonnelEntity> {
@@ -21,9 +20,9 @@ public interface PersonnelService extends IService<PersonnelEntity> {
      * @param personnelReq 人员信息
      * @return {@link List }<{@link PersonnelEntity }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
-    PageInfo<PersonnelResp> selectList(PersonnelListReq personnelReq);
+    List<PersonnelResp> selectList(PersonnelListReq personnelReq);
 
     /**
      * 功能描述：查询单条人员信息
@@ -31,7 +30,7 @@ public interface PersonnelService extends IService<PersonnelEntity> {
      * @param personId 人员信息Id
      * @return {@link PersonnelResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     PersonnelResp selectById(String personId);
 
@@ -40,7 +39,7 @@ public interface PersonnelService extends IService<PersonnelEntity> {
      *
      * @param personnel 人员信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void saveData(PersonnelEntity personnel);
 
@@ -49,7 +48,7 @@ public interface PersonnelService extends IService<PersonnelEntity> {
      *
      * @param personnel 人员信息
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void updateData(PersonnelEntity personnel);
 
@@ -58,7 +57,7 @@ public interface PersonnelService extends IService<PersonnelEntity> {
      *
      * @param personId 人员信息Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void deleteById(String personId);
 }

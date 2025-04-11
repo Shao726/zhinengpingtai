@@ -4,13 +4,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dite.znpt.domain.entity.DefectEntity;
 import com.dite.znpt.domain.vo.DefectListReq;
 import com.dite.znpt.domain.vo.DefectResp;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /**
  * @author huise23
- * @date 2025/04/09 11:48
+ * @date 2025/04/11 23:17
  * @Description: 缺陷记录表服务接口
  */
 public interface DefectService extends IService<DefectEntity> {
@@ -21,9 +20,9 @@ public interface DefectService extends IService<DefectEntity> {
      * @param defectReq 缺陷记录
      * @return {@link List }<{@link DefectEntity }>
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
-    PageInfo<DefectResp> selectList(DefectListReq defectReq);
+    List<DefectResp> selectList(DefectListReq defectReq);
 
     /**
      * 功能描述：查询单条缺陷记录
@@ -31,7 +30,7 @@ public interface DefectService extends IService<DefectEntity> {
      * @param defectId 缺陷记录Id
      * @return {@link DefectResp }
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     DefectResp selectById(String defectId);
 
@@ -40,7 +39,7 @@ public interface DefectService extends IService<DefectEntity> {
      *
      * @param defect 缺陷记录
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void saveData(DefectEntity defect);
 
@@ -49,7 +48,7 @@ public interface DefectService extends IService<DefectEntity> {
      *
      * @param defect 缺陷记录
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void updateData(DefectEntity defect);
 
@@ -58,7 +57,7 @@ public interface DefectService extends IService<DefectEntity> {
      *
      * @param defectId 缺陷记录Id
      * @author huise23
-     * @date 2025/04/09 11:48
+     * @date 2025/04/11 23:17
      **/
     void deleteById(String defectId);
 }

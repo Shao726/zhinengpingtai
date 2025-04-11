@@ -8,14 +8,14 @@ import lombok.Data;
 
 /**
  * @author huise23
- * @date 2025/04/09 14:39
+ * @date 2025/04/11 23:17
  * @Description: 项目-公司关联信息请求实体
  */
 @Data
 @ApiModel("项目-公司关联信息列表请求实体")
 public class ProjectCompanyListReq implements Serializable {
 
-    private static final long serialVersionUID = -62483123283940291L;
+    private static final long serialVersionUID = 598388421634125600L;
 
     @ApiModelProperty("查询关键字")
     private String keyword;
@@ -26,7 +26,7 @@ public class ProjectCompanyListReq implements Serializable {
     @ApiModelProperty("公司id")
     private String companyId;
 
-    @ApiModelProperty("关联类型")
+    @ApiModelProperty("单位类型（检查/委托）")
     private String relationType;
 
 }

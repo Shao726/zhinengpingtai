@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dite.znpt.mapper.PartMapper">
+
+    <sql id="Base_Column_List">
+        a.part_id,         a.project_id,         a.crew_id,         a.part_name, 
+        a.part_code,         a.part_type,         a.part_desc,         a.manufacturer, 
+        a.model
+    </sql>
+
+    <select id="queryBySelective" resultType="com.dite.znpt.domain.vo.PartResp">
+        select
+            <include refid="Base_Column_List"/>
+        from part a
+        <where>
+            <if test="keyword != null and keyword != ''">
+#                and (a.TODO like concat('%', #{keyword,jdbcType=VARCHAR}, '%') or a.TODO like concat('%', #{keyword,jdbcType=VARCHAR}, '%'))
+            </if>
+            <if test="partId != null and partId != ''">
+                and a.part_id like concat ('%', #{partId}, '%')
+            </if>
+            <if test="projectId != null and projectId != ''">
+                and a.project_id like concat ('%', #{projectId}, '%')
+            </if>
+            <if test="crewId != null and crewId != ''">
+                and a.crew_id like concat ('%', #{crewId}, '%')
+            </if>
+            <if test="partName != null and partName != ''">
+                and a.part_name like concat ('%', #{partName}, '%')
+            </if>
+            <if test="partCode != null and partCode != ''">
+                and a.part_code like concat ('%', #{partCode}, '%')
+            </if>
+            <if test="partType != null and partType != ''">
+                and a.part_type like concat ('%', #{partType}, '%')
+            </if>
+            <if test="partDesc != null and partDesc != ''">
+                and a.part_desc like concat ('%', #{partDesc}, '%')
+            </if>
+            <if test="manufacturer != null and manufacturer != ''">
+                and a.manufacturer like concat ('%', #{manufacturer}, '%')
+            </if>
+            <if test="model != null and model != ''">
+                and a.model like concat ('%', #{model}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>
+

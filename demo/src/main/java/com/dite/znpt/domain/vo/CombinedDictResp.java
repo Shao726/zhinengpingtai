@@ -7,7 +7,7 @@ import com.dite.znpt.domain.entity.CombinedDictEntity;
 
 /**
  * @author huise23
- * @date 2025/04/09 14:39
+ * @date 2025/04/11 23:17
  * @Description: 字典响应实体
  */
 @Data

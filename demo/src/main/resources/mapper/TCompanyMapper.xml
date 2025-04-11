@@ -3,7 +3,8 @@
 <mapper namespace="com.dite.znpt.mapper.TCompanyMapper">
 
     <sql id="Base_Column_List">
-        a.company_id,         a.company_name,         a.address
+        a.company_id,         a.company_name,         a.address,         a.contact, 
+        a.phone
     </sql>
 
     <select id="queryBySelective" resultType="com.dite.znpt.domain.vo.TCompanyResp">
@@ -22,6 +23,12 @@
             </if>
             <if test="address != null and address != ''">
                 and a.address like concat ('%', #{address}, '%')
+            </if>
+            <if test="contact != null and contact != ''">
+                and a.contact like concat ('%', #{contact}, '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                and a.phone like concat ('%', #{phone}, '%')
             </if>
         </where>
     </select>

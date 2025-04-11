@@ -60,7 +60,7 @@ public class Result<T> implements Serializable {
         return new Result<Boolean>(HttpStatus.OK, Boolean.FALSE, SUCCESS_CODE, StringUtils.EMPTY);
     }
 
-    public static <T> Result<T> warn(String code, String msg) {
+    public static <T> Result<T> error(String code, String msg) {
         return new Result<T>(HttpStatus.INTERNAL_SERVER_ERROR, null, Integer.parseInt(code), msg);
     }
 

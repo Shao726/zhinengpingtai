@@ -1,6 +1,5 @@
 package com.dite.znpt.domain.vo;
 
-import java.math.BigDecimal;
 import java.io.Serializable;
 
 import io.swagger.annotations.ApiModel;
@@ -9,14 +8,14 @@ import lombok.Data;
 
 /**
  * @author huise23
- * @date 2025/04/09 14:39
+ * @date 2025/04/11 23:17
  * @Description: 缺陷记录请求实体
  */
 @Data
 @ApiModel("缺陷记录列表请求实体")
 public class DefectListReq implements Serializable {
 
-    private static final long serialVersionUID = 692832532969251285L;
+    private static final long serialVersionUID = 585419070823466048L;
 
     @ApiModelProperty("查询关键字")
     private String keyword;
@@ -40,12 +39,12 @@ public class DefectListReq implements Serializable {
     private String defectLevel;
 
     @ApiModelProperty("轴向长度(mm)")
-    private BigDecimal axialLength;
+    private Object axialLength;
 
     @ApiModelProperty("弦向长度(mm)")
-    private BigDecimal chordLength;
+    private Object chordLength;
 
-    @ApiModelProperty("处理建议")
+    @ApiModelProperty("图片路径")
     private String imagePath;
 
     @ApiModelProperty("图片详情")

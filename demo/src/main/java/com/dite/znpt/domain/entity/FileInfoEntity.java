@@ -33,5 +33,9 @@ public class FileInfoEntity extends AuditableEntity implements Serializable {
     @ApiModelProperty("minio相对路径")
     @TableField("minio_path")
     private String minioPath;
+
+    @ApiModelProperty("业务类型，字典file_business_type")
+    @TableField("business_type")
+    private String businessType;
 }
 

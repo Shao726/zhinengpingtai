@@ -33,5 +33,13 @@ public class TCompanyEntity extends AuditableEntity implements Serializable {
     @ApiModelProperty("公司地址")
     @TableField("address")
     private String address;
+
+    @ApiModelProperty("联系人")
+    @TableField("contact")
+    private String contact;
+
+    @ApiModelProperty("电话")
+    @TableField("phone")
+    private String phone;
 }
 

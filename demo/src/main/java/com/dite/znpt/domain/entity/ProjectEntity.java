@@ -38,10 +38,6 @@ public class ProjectEntity extends AuditableEntity implements Serializable {
     @TableField("farm_address")
     private String farmAddress;
 
-    @ApiModelProperty("委托单位")
-    @TableField("client_id")
-    private String clientId;
-
     @ApiModelProperty("检查方式，字典method_id")
     @TableField("method_id")
     private String methodId;
@@ -53,6 +49,9 @@ public class ProjectEntity extends AuditableEntity implements Serializable {
     @ApiModelProperty("风机型号")
     @TableField("turbine_model")
     private String turbineModel;
-}
 
+    @ApiModelProperty("项目状态，字典project_status")
+    @TableField("status")
+    private String status;
+}
 

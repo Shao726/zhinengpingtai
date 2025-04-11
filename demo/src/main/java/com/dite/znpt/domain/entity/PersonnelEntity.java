@@ -41,5 +41,9 @@ public class PersonnelEntity extends AuditableEntity implements Serializable {
     @ApiModelProperty("密码")
     @TableField("password")
     private String password;
+
+    @ApiModelProperty("1正常0禁用")
+    @TableField("status")
+    private Integer status;
 }
 

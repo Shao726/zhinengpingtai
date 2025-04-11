@@ -55,7 +55,7 @@ public class DefectEntity extends AuditableEntity implements Serializable {
     @TableField("chord_length")
     private BigDecimal chordLength;
 
-    @ApiModelProperty("处理建议")
+    @ApiModelProperty("图片路径")
     @TableField("image_path")
     private String imagePath;
 

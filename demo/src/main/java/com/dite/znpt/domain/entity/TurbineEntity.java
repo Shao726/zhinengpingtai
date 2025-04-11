@@ -23,11 +23,27 @@ public class TurbineEntity extends AuditableEntity implements Serializable {
     private static final long serialVersionUID = -38088185643803512L;
 
     @ApiModelProperty("机组号")
-    @TableId(value = "turbine_code", type = IdType.ASSIGN_ID)
-    private String turbineCode;
+    @TableId(value = "turbine_id", type = IdType.ASSIGN_ID)
+    private String turbineId;
 
     @ApiModelProperty("项目id")
     @TableField("project_id")
     private String projectId;
+
+    @ApiModelProperty("机组名称")
+    @TableField("turbine_name")
+    private String turbineName;
+
+    @ApiModelProperty("机组描述")
+    @TableField("turbine_desc")
+    private String turbineDesc;
+
+    @ApiModelProperty("机组厂商")
+    @TableField("manufacturer")
+    private String manufacturer;
+
+    @ApiModelProperty("机组型号")
+    @TableField("model")
+    private String model;
 }
 

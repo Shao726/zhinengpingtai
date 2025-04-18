@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dite.znpt.monitor.mapper.IpConfigMapper">
+
+    <resultMap type="com.dite.znpt.monitor.domain.entity.IpConfigEntity" id="BaseResultMap">
+        <result property="configId" column="config_id" jdbcType="INTEGER"/>
+        <result property="ip" column="ip" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ic.config_id, ic.ip
+        
+    </sql>
+
+</mapper>
+

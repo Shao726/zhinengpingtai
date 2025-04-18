@@ -1,0 +1,113 @@
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 8080
+
+# 数据源配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.99.201.243:3306/test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: h67&E98HS8^6
+    druid:
+      # 初始连接数
+      initialSize: 5
+      # 最小连接池数量
+      minIdle: 10
+      # 最大连接池数量
+      maxActive: 50
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      maxEvictableIdleTimeMillis: 900000
+      # 配置检测连接是否有效
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        # 设置白名单，不填则允许所有访问
+        allow:
+        url-pattern: /druid/*
+        # 控制台管理用户名和密码
+        login-username: iotplatform
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          # 慢SQL记录
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  # redis 配置
+  redis:
+    pool:
+      max-active: 3000
+      max-idle: 1000
+      max-wait: 3000
+    host: 39.99.201.243
+    port: 6379
+    password: yfeng@123
+    timeout: 3000
+#    0 gaea系统，3 gaea-dev/gaea-test系统，4 znpt开发，5 znpt测试 6 znpt生产
+    database: 4
+
+## MINIO配置
+#minio:
+#  url: http://10.20.32.11:9000
+#  accessKey: minio
+#  secretKey: minio@321
+#  private:
+#    bucket: pri
+#    domain:
+#      prefix: /minio-pri/
+#  public:
+#    bucket: pub
+#    domain:
+#      prefix: /minio/
+
+sip-config:
+  name: 信令服务
+  ip: 10.17.12.203
+  port: 1074
+  charset: gb2312
+  domain: 3402000000
+  id: 34020000002000000001
+  password: 123456
+  mediaType: mp4
+
+zlm-config:
+  # 流媒体名称
+  mediaName: 媒体服务
+  # 流媒体服务商
+  mediaService: ZLMdia
+  # 公网ip
+  publicHost:
+  # 接口ip
+  apiHost: 10.17.12.203
+  # 接口端口
+  apiPort: 30186
+  # 密钥
+  secretKey: JvVotkdN01y4qZHlrJsdq4gD7n9rK6wV
+  # 流id前缀
+  streamPrefix:
+  # rtp ip
+  rtpHost: 10.17.12.203
+  # rtp 端口
+  rtpPort: 30186
+  # 动态端口起始值
+  dynamicPortStart: 30150
+  # 动态端口结束值
+  dynamicPortEnd: 30185

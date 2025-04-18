@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dite.znpt.monitor.mapper.DeviceVideoChannelMapper">
+
+    <resultMap id="DeviceVideoChannelListRespMap" type="com.dite.znpt.monitor.domain.vo.video.DeviceVideoChannelListResp" >
+        <id column="channel_id" property="channelId" jdbcType="BIGINT" />
+        <id column="product_id" property="productId" jdbcType="BIGINT" />
+        <id column="channel_code" property="channelCode" jdbcType="VARCHAR" />
+        <id column="channel_name" property="channelName" jdbcType="VARCHAR" />
+        <id column="address" property="address" jdbcType="VARCHAR" />
+        <id column="camera_type" property="cameraType" jdbcType="VARCHAR" />
+        <id column="ptz_control" property="ptzControl" jdbcType="VARCHAR" />
+        <id column="status" property="status" jdbcType="VARCHAR" />
+        <id column="remark" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="DeviceVideoChannelRespMap" type="com.dite.znpt.monitor.domain.vo.video.DeviceVideoChannelResp" >
+        <id column="channel_id" property="channelId" jdbcType="BIGINT" />
+        <id column="channel_code" property="channelCode" jdbcType="VARCHAR" />
+        <id column="channel_name" property="channelName" jdbcType="VARCHAR" />
+        <id column="address" property="address" jdbcType="VARCHAR" />
+        <id column="camera_type" property="cameraType" jdbcType="VARCHAR" />
+        <id column="ptz_control" property="ptzControl" jdbcType="VARCHAR" />
+        <id column="remark" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        dvc.channel_id, dvc.channel_code, dvc.channel_name,  dvc.address, dvc.camera_type, dvc.ptz_control, dvc.status, dvc.remark
+    </sql>
+
+    <select id="selectDeviceVideoChannel" resultMap="DeviceVideoChannelListRespMap">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM vs_device_video_channel dvc
+
+        WHERE dvc.video_id = #{videoId}
+        <if test="keyword != null and keyword != ''">
+            AND dvc.channel_code LIKE concat('%', #{keyword,jdbcType=VARCHAR}, '%') OR dvc.channel_name LIKE concat('%', #{keyword,jdbcType=VARCHAR}, '%')
+        </if>
+    </select>
+
+    <select id="selectAllDeviceVideoChannel" resultMap="DeviceVideoChannelListRespMap">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM vs_device_video_channel dvc
+        LEFT JOIN vs_device_video dv ON dvc.video_id = dv.video_id
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND dvc.channel_name LIKE concat('%', #{keyword,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="getDeviceVideoChannelDetail" resultMap="DeviceVideoChannelRespMap">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM vs_device_video_channel dvc
+        WHERE dvc.channel_code = #{channelCode}
+    </select>
+
+    <!--查询视频通道详情-->
+    <select id="getByCode" resultMap="DeviceVideoChannelRespMap">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM vs_device_video_channel dvc
+        WHERE dvc.device_code = #{channelCode}
+    </select>
+
+    <select id="selectVideoInfoList" resultType="com.dite.znpt.monitor.domain.resp.VideoInfoResp">
+        SELECT
+            dvc.*, dv.video_id, dv.video_name
+        FROM vs_device_video_channel dvc
+        LEFT JOIN vs_device_video dv ON dvc.video_id = dv.video_id
+        <where>
+            <if test="videoConnection != null">
+                AND dvc.parental = '0'
+                <if test="videoConnection == 2">
+                    AND ((LENGTH(dvc.parent_id) > LENGTH(dvc.channel_code) OR dvc.parent_id LIKE concat('%', #{cascadeSeparator,jdbcType=VARCHAR}, '%')))
+                </if>
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dite.znpt.monitor.mapper.DeviceVideoMapper">
+
+    <resultMap id="DeviceVideoListRespMap" type="com.dite.znpt.monitor.domain.vo.video.DeviceVideoListResp" >
+        <id column="video_id" property="videoId" jdbcType="BIGINT" />
+        <result column="video_code" property="videoCode" jdbcType="VARCHAR" />
+        <result column="video_name" property="videoName" jdbcType="VARCHAR" />
+        <result column="transport" property="transport" jdbcType="VARCHAR" />
+        <result column="stream_mode" property="streamMode" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="channel_count" property="channelCount" jdbcType="INTEGER" />
+        <result column="ip" property="ip" jdbcType="VARCHAR" />
+        <result column="host_address" property="hostAddress" jdbcType="VARCHAR" />
+        <result column="port" property="port" jdbcType="INTEGER" />
+        <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="keepalive_time" property="keepAliveTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Device_Video_Column" >
+        dv.video_id, dv.video_code, dv.video_name, dv.transport, dv.stream_mode, dv.channel_count, dv.status, dv.register_time,
+        dv.keepalive_time, dv.channel_count, dv.ip, dv.port,dv.host_address, dv.manufacturer, dv.remark, dv.create_time
+    </sql>
+
+    <select id="selectDeviceVideoList" resultMap="DeviceVideoListRespMap">
+        SELECT
+            <include refid="Device_Video_Column" />
+        FROM vs_device_video dv
+        <where>
+            <if test="status != null and status != ''">
+                AND dv.status = #{status}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND  dv.video_code LIKE concat('%', #{keyword,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="hostAddress != null and hostAddress != ''">
+                AND  dv.host_address LIKE concat( #{hostAddress,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

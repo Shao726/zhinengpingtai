@@ -60,6 +60,14 @@ public class Result<T> implements Serializable {
         return new Result<Boolean>(HttpStatus.OK, Boolean.FALSE, SUCCESS_CODE, StringUtils.EMPTY);
     }
 
+    public static <T> Result<T> error() {
+        return new Result<T>(HttpStatus.INTERNAL_SERVER_ERROR, null, Integer.parseInt(Constants.SERVICE_EXCEPTION), Constants.SERVICE_EXCEPTION_MESSAGE);
+    }
+
+    public static <T> Result<T> error(String msg) {
+        return new Result<T>(HttpStatus.INTERNAL_SERVER_ERROR, null, Integer.parseInt(Constants.SERVICE_EXCEPTION), msg);
+    }
+
     public static <T> Result<T> error(String code, String msg) {
         return new Result<T>(HttpStatus.INTERNAL_SERVER_ERROR, null, Integer.parseInt(code), msg);
     }

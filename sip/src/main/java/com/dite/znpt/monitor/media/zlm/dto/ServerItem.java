@@ -23,6 +23,8 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 public class ServerItem implements Serializable {
+
+    private static final long serialVersionUID = 2460404295026548536L;
     /**
      * 播流最大并发个数
      */

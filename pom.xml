@@ -11,7 +11,7 @@
         <java.version>17</java.version>
     </properties>
     <modules>
-        <module>demo</module>
+        <module>core</module>
         <module>sip</module>
         <module>web</module>
     </modules>

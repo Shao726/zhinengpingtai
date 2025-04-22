@@ -34,12 +34,6 @@ public class SipLayer {
 
     private SipFactory sipFactory;
 
-    @PostConstruct
-    public void initLogging() {
-        SLF4JBridgeHandler.removeHandlersForRootLogger();
-        SLF4JBridgeHandler.install();
-    }
-
     @Bean("sipFactory")
     SipFactory createSipFactory() {
         sipFactory = SipFactory.getInstance();
@@ -52,7 +46,6 @@ public class SipLayer {
     SipStack createSipStack() throws PeerUnavailableException {
         Properties properties = new Properties();
         properties.setProperty("javax.sip.STACK_NAME", "GB28181_SIP");
-        properties.setProperty("gov.nist.javax.sip.PATH_NAME", "gov.nist");
         properties.setProperty("javax.sip.IP_ADDRESS", sipConfig.getIp());
         /**
          * 完整配置参考 gov.nist.javax.sip.SipStackImpl，需要下载源码
@@ -78,8 +71,7 @@ public class SipLayer {
         if (log.isDebugEnabled()) {
             properties.setProperty("gov.nist.javax.sip.TRACE_LEVEL", "DEBUG");
         }
-        properties.setProperty("gov.nist.javax.sip.TRACE_LEVEL", "INFO");
-//        properties.setProperty("gov.nist.javax.sip.STACK_LOGGER", "gov.nist.core.CommonLoggerSlf4j"); // 通过 SLF4J 桥接
+        properties.setProperty("gov.nist.javax.sip.TRACE_LEVEL", "WARN");
         sipStack = sipFactory.createSipStack(properties);
 
         return sipStack;

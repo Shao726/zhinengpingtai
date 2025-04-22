@@ -19,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class MediaItem implements Serializable {
+    private static final long serialVersionUID = -6679610697837602559L;
     /**
      * 设备编码
      */

@@ -16,8 +16,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MediaServerCache {
     private final RedisService redisService;
-    public final RedisTemplate<Object, Object> redisTemplate;
-
     private final String zlm_key = "zlm_media_server";
 
 

@@ -3,13 +3,16 @@ package com.dite.znpt.monitor.media.zlm.dto.resp;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @Author: huise23
  * @Date: 2022/8/29 11:25
  * @Description:
  */
 @Data
-public class Track {
+public class Track implements Serializable {
+    private static final long serialVersionUID = 5317048895056912057L;
     /**
      * 音频通道数
      */

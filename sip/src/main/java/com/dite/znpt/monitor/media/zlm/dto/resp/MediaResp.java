@@ -4,6 +4,7 @@ import com.dite.znpt.monitor.media.zlm.dto.event.BaseEventReq;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,9 @@ import java.util.List;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class MediaResp extends BaseEventReq {
+public class MediaResp extends BaseEventReq implements Serializable {
+    private static final long serialVersionUID = -8710934021370904914L;
+
     /**
      * 本协议观看人数
      */

@@ -61,14 +61,13 @@ public class VideoController {
     @ApiOperation(value = "获取信令服务器配置信息", notes = "iot:video:sip:view", httpMethod = "GET")
     @GetMapping("/sipServerConfig")
     public Result getSipServerConfig(){
-        return Result.ok(sipConfig);
+        return Result.ok(BeanUtil.copyProperties(sipConfig, SipConfig.class));
     }
 
     @ApiOperation(value = "获取流媒体服务配置信息", notes = "iot:video:media:view", httpMethod = "GET")
     @GetMapping("/streamMediaServerConfig")
     public Result getStreamMediaServerConfig(){
-        //streamMediaServerConfigService.getStreamMediaServerConfig()
-        return Result.ok(streamMediaServerConfigService);
+        return Result.ok(BeanUtil.copyProperties(streamMediaServerConfigService, StreamMediaServerConfig.class));
     }
 
     @ApiOperation(value = "查询监控IP配置列表", notes = "iot:config:list", httpMethod = "GET")

@@ -1,12 +1,10 @@
 package com.dite.znpt.monitor.media.zlm.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.Dict;
-import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
-import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSON;
 import com.dite.znpt.monitor.media.zlm.ZlmApi;
 import com.dite.znpt.monitor.media.zlm.dto.ServerConfig;
 import com.dite.znpt.monitor.media.zlm.dto.ServerInfo;
@@ -37,8 +35,8 @@ public class ZlmApiImpl implements ZlmApi {
         log.info("ZLM:" + url);
         log.info("REQ:" + req);
         req.setSecret(server.getSecretKey());
-        String respStr = HttpUtil.post(url, JSONUtil.toJsonStr(req));
-        V resp = JSONUtil.toBean(respStr, clazz);
+        String respStr = HttpUtil.post(url, JSON.toJSONString(req));
+        V resp = JSON.parseObject(respStr, clazz);
         if (resp.isSuccess()) {
             return resp;
         }
@@ -173,7 +171,7 @@ public class ZlmApiImpl implements ZlmApi {
     public void getSnap(ServerInfo server, SnapReq req) throws IOException {
         String url = StrUtil.format("http://{}:{}/index/api/getSnap", server.getApiHost(), server.getApiPort());
         req.setSecret(server.getSecretKey());
-        url += "?" + HttpUtil.toParams(BeanUtil.beanToMap(req));
+        url += "?" + HttpUtil.toParams(JSON.parseObject(JSON.toJSONString(req)));
         HttpUtil.download(url, response.getOutputStream(), true);
     }
 
